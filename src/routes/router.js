@@ -7,7 +7,6 @@ import express from 'express'
 import LCD from '../libs/LCD'
 import LED from '../libs/LED'
 
-
 const app = express()
 
 const config = {
@@ -26,11 +25,12 @@ const led = new LED()
 const mq = new MessageQue(lcd, led)
 
 app.post('/message', messageValidation,  async (request, response) => {
-  
+  const {inviteMessage} = settings
+  const {student} = request.body
   try {
     await createOrUpdateMessage(request.body)
     mq.updateMessageQue()
-    response.status(200).json({ msg: 'Message Published!' })
+    response.status(200).json({ msg: inviteMessage(student) })
   } catch (e) {
     console.log(e)
   }
@@ -40,11 +40,16 @@ app.delete('/message', async (request, response) => {
   const {username} = request.body
 
   try {
-    await User.findOneAndRemove({username})  
-    mq.updateMessageQue()
-    return response.status(200).json({
-      msg: 'Your message has been removed'
-    })
+    const removedMessage = await User.findOneAndRemove({username})  
+    if (removedMessage) {
+      mq.updateMessageQue()
+      return response.status(200).json({
+        msg: settings.removeMessage
+      })
+    }
+    return response.status(204).json({
+        msg: settings.removeErrorMessage
+      })
   } catch (e) {
     console.log(e)
   }

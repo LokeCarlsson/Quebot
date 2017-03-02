@@ -13,16 +13,11 @@ export default class MessageQue {
   }
 
   async updateMessageQue() {
-    console.log('updating message que')
     try {
       this.messageList = await User.find()
       this.messageQueLength = this.messageList.length
 
-      console.log(`MessageQue ${this.messageQueLength}`)
-
-
       if (this.messageQueLength > 0) {
-        console.log('Found messages!')
         this.updateInterval()
       } else {
         clearInterval(this.messageQueInterval)
@@ -36,16 +31,13 @@ export default class MessageQue {
   }
 
   updateInterval() {
-    console.log('Updating interval!')
     this.messageQueInterval === null ? 
     this.startInterval() : this.restartInterval()
   }
 
   startInterval() {
-    console.log('Starting interval!')
     this.messageQueInterval = setInterval(() => {
       const {message} = this.messageList[this.messageQueIndex]
-      console.log('Publishing to lcd')
       this.led.on()
       this.lcd.displayMessage(message)
       this.messageQueIndex = (this.messageQueIndex + 1) % this.messageQueLength
@@ -53,7 +45,6 @@ export default class MessageQue {
   }
 
   restartInterval() {
-    console.log('Resetting interval!')
     clearInterval(this.messageQueInterval)
     this.messageQueInterval = null
     this.updateInterval()

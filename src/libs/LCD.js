@@ -9,7 +9,6 @@ export default class LCD {
   publish() {
     this.lcd.on('ready', error => {
       if (error) throw error
-      console.log('lcd is ready')
     })
   }
 
@@ -32,7 +31,6 @@ export default class LCD {
       if (e) {
         throw e
       }
-      console.log('Turned off screen')
       this.lcd.clear()
       this.lcd.close()
       process.exit(0)
