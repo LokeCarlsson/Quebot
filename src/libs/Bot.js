@@ -1,3 +1,4 @@
+import settings from '../settings'
 import Botkit from 'botkit'
 import axios from 'axios'
 

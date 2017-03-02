@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/index.js --exec babel-node --presets es2015,stage-2",
-    "simple": "babel-node src/index.js --presets es2015,stage-2"
+    "simple": "babel-node src/index.js --presets es2015,stage-2",
+    "build": "babel src -d dist",
+    "forever": "pm2 start babel-node src/index.js"
   },
   "keywords": [
     "nodejs",
@@ -22,10 +24,13 @@
     "cors": "^2.8.1",
     "express": "^4.14.1",
     "lcd": "^1.1.4",
-    "mongoose": "^4.8.5"
+    "mongoose": "^4.8.5",
+    "onoff": "^1.1.2"
   },
   "devDependencies": {
     "babel-cli": "^6.23.0",
+    "babel-plugin-transform-remove-console": "^6.8.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-stage-2": "^6.22.0",
     "morgan": "^1.8.1"

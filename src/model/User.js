@@ -5,7 +5,7 @@ const UserSchema = new Schema({
 
   // ex Shoulder
   username: {
-    type: String, required: true, unique: true, // Mats
+    type: String, required: true, unique: true,
   },
 
   // ex Axel

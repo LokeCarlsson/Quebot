@@ -1,31 +1,29 @@
-import express from 'express'
-import User from '../model/User'
 import messageValidation from './middlewares/messageValidation'
-import LCD from '../libs/LCD'
 import MessageQue from '../libs/MessageQue'
+import { createOrUpdateMessage } from '../libs/dbHelpers'
+import * as settings from '../settings'
+import User from '../model/User'
+import express from 'express'
+import LCD from '../libs/LCD'
+import LED from '../libs/LED'
+
 
 const app = express()
 
-
-const ENABLE = 19
-const REGISTER = 26
-const D4 = 13
-const D5 = 6
-const D6 = 5
-const D7 = 11
-
-
 const config = {
-  largeFont: true,
-  rs: REGISTER,
-  e: ENABLE,
-  data: [D4, D5, D6, D7],
-  cols: 16,
-  rows: 2
+  rs: settings.REGISTER,
+  e: settings.ENABLE,
+  data: [settings.D4, 
+         settings.D5, 
+         settings.D6, 
+         settings.D7],
+  cols: settings.COLS,
+  rows: settings.ROWS
 }
 
 const lcd = new LCD(config)
-const mq = new MessageQue(lcd)
+const led = new LED()
+const mq = new MessageQue(lcd, led)
 
 app.post('/message', messageValidation,  async (request, response) => {
   
@@ -37,7 +35,6 @@ app.post('/message', messageValidation,  async (request, response) => {
     console.log(e)
   }
 })
-
 
 app.delete('/message', async (request, response) => {
   const {username} = request.body
@@ -53,28 +50,4 @@ app.delete('/message', async (request, response) => {
   }
 })
 
-
 export default app
-
-async function createOrUpdateMessage(botPayload) {
-	const {username, name, student} = botPayload
-  const firstRow = `${student} goto`
-  const secondRow = name
-	try {
-		return await User.findOneAndUpdate(
-			{username},
-			{
-        'message.firstRow': firstRow,
-        'message.secondRow': secondRow,
-        username, name
-      },
-			{new: true, setDefaultsOnInsert: true, upsert: true}
-		)
-	} catch (error) {
-		throw error
-	}
-}
-
-async function removeMessageFromQue(username) {
-  await User.findOneAndRemove({username})
-}

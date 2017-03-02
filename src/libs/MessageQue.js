@@ -1,11 +1,12 @@
 import User from '../model/User'
 
 export default class MessageQue {  
-  constructor(lcd) {
+  constructor(lcd, led) {
     this.messageQueInterval = null
     this.messageQueIndex = 0
     this.messageQueLength = 0
     this.lcd = lcd
+    this.led = led
     this.lcd.publish()
     this.messageList = []
     
@@ -45,9 +46,10 @@ export default class MessageQue {
     this.messageQueInterval = setInterval(() => {
       const {message} = this.messageList[this.messageQueIndex]
       console.log('Publishing to lcd')
+      this.led.on()
       this.lcd.displayMessage(message)
       this.messageQueIndex = (this.messageQueIndex + 1) % this.messageQueLength
-    }, 3000)
+    }, 15000)
   }
 
   restartInterval() {
