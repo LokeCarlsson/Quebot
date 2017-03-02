@@ -47,7 +47,7 @@ app.delete('/message', async (request, response) => {
         msg: settings.removeMessage
       })
     }
-    return response.status(204).json({
+    return response.status(200).json({
         msg: settings.removeErrorMessage
       })
   } catch (e) {

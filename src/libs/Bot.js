@@ -1,4 +1,4 @@
-import settings from '../settings'
+import * as settings from '../settings'
 import Botkit from 'botkit'
 import axios from 'axios'
 
@@ -34,16 +34,9 @@ export default class Bot {
   message(bot, message) {
     bot.api.users.info({user: message.user}, (error, response) => {
       let {name: username, real_name: name} = response.user
+      let messageText = message.text.toLowerCase()
 
-      const regExp =  new RegExp('^[a-z]{2}(\d{2}|\d{3})[a-z]{2}$')
-      
-      const validStudentName = regExp.test(message.text)
-
-      if (!validStudentName) {
-        bot.reply(message, settings.invalidStudentErrorMessage)
-      }
-      
-      if (message.text === 'clear') {
+      if (message.text.toLowerCase() === 'clear') {
         axios.delete('/message', {
           data: {username}
         })
@@ -54,8 +47,11 @@ export default class Bot {
           bot.reply(message, err.code)
         })  
       } else {
+        if (!this.isValidStudentName(messageText)) {
+          return bot.reply(message, settings.invalidStudentErrorMessage)
+        }
         axios.post('/message', {
-          student: message.text,
+          student: messageText,
           name,
           username
         })
@@ -67,5 +63,10 @@ export default class Bot {
         })
       }
     })
+  }
+
+  isValidStudentName(message) {
+    const regExp =  new RegExp('^[a-z]{2}(\\d{2}|\\d{3})[a-z]{2}$')  
+    return regExp.test(message)
   }
 } 
