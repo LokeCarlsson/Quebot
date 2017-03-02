@@ -1,5 +1,11 @@
 // Slack token
-export const TOKEN = 'xxxxxxxxxxxxx'
+export const TOKEN = 'xxxxxxxxxxxxxxxx'
+
+// Bot
+export const inviteMessage = student => `${student} has been summoned`
+export const removeMessage = 'Your message has been removed'
+export const removeErrorMessage = 'You did not have a messages to remove!'
+export const invalidStudentErrorMessage = 'That\'s not a student! Use xx00(0)xx :wink:'
 
 // Express server port
 export const PORT = process.env.PORT || 20080
