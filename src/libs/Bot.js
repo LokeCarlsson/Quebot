@@ -34,6 +34,14 @@ export default class Bot {
   message(bot, message) {
     bot.api.users.info({user: message.user}, (error, response) => {
       let {name: username, real_name: name} = response.user
+
+      const regExp =  new RegExp('^[a-z]{2}(\d{2}|\d{3})[a-z]{2}$')
+      
+      const validStudentName = regExp.test(message.text)
+
+      if (!validStudentName) {
+        bot.reply(message, settings.invalidStudentErrorMessage)
+      }
       
       if (message.text === 'clear') {
         axios.delete('/message', {
