@@ -28,6 +28,8 @@
           "values": {
             "type": "string",
             "customFields": {
+              "cols": 16,
+              "rows": 2,
               "enable": 19,
               "register": 26,
               "d4": 13,
@@ -59,7 +61,7 @@
     "actions": {
       "link": "/actions",
       "title": "Different Actions",
-      " ": {
+      "resources": {
         "lcdDisplay": {
           "name": "Change LCD text",
           "description": "Changes the text on the LCD",

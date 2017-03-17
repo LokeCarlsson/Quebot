@@ -31,17 +31,17 @@ const requireLogin = passport.authenticate('local', { session: false })
 // const led = new LED()
 // const mq = new MessageQue(lcd, led)
 
-app.post('/message', messageValidation, (req, res) => {
-  const {student} = req.body
-  createOrUpdateMessage(req.body)
-    .then(data => {
-      mq.updateMessageQue()
-      return res.status(200).send()
-    })
-    .catch(error => {
-      console.log(error)
-      console.log('app post /message')
-    })
+// app.post('/message', messageValidation, (req, res) => {
+//   const {student} = req.body
+//   createOrUpdateMessage(req.body)
+//     .then(data => {
+//       mq.updateMessageQue()
+//       return res.status(200).send()
+//     })
+//     .catch(error => {
+//       console.log(error)
+//       console.log('app post /message')
+//     })
 
   // try {
   //   await createOrUpdateMessage(req.body)
@@ -50,22 +50,22 @@ app.post('/message', messageValidation, (req, res) => {
   // } catch (e) {
   //   console.log(e)
   // }
-})
+// })
 
-app.delete('/message', (req, res) => {
-  const {username} = req.body
+// app.delete('/message', (req, res) => {
+//   const {username} = req.body
 
-  User.findOneAndRemove({username})
-    .then(removedMessage => {
-      if (!removedMessage) return res.status(400).send()
+//   User.findOneAndRemove({username})
+//     .then(removedMessage => {
+//       if (!removedMessage) return res.status(400).send()
       
-      mq.updateMessageQue()
-      return res.status(204).send()
-    })
-    .catch(error => {
-      console.log(error)
-      console.log('app delete /message')
-    })
+//       mq.updateMessageQue()
+//       return res.status(204).send()
+//     })
+//     .catch(error => {
+//       console.log(error)
+//       console.log('app delete /message')
+//     })
 
 
   // try {
@@ -79,7 +79,7 @@ app.delete('/message', (req, res) => {
   // } catch (e) {
   //   console.log(e)
   // }
-})
+// })
 
 app.get('/', (req, res) => {
   res.status(200).json({

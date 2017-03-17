@@ -1,4 +1,3 @@
-
 import bodyParser from 'body-parser'
 import routes from './routes/router'
 import mongoose from 'mongoose'
@@ -6,6 +5,9 @@ import express from 'express'
 import LED from './libs/LED'
 import morgan from 'morgan'
 import cors from 'cors'
+import properties from './routes/properties'
+import model from './routes/model'
+import actions from './routes/actions'
 
 const PORT = process.env.PORT || 20080
 
@@ -15,7 +17,9 @@ app.use(morgan('dev'))
 app.use(cors())
 app.use(bodyParser.json())
 
-app.use(routes)
+app.use(actions)
+app.use(model)
+app.use(properties)
 
 app.use((error, request, response, next) => {
   response.status(500).json({ msg: error.message })

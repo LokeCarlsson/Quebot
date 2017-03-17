@@ -1,10 +1,14 @@
 // import {GPIO_NUMBER, DURATION} from '../settings'
+import resource from '../../resource'
 import onoff from 'onoff'
+
+
 
 export default class LED {
   constructor() {
+    const {gpio} = resource.links.properties.resources.LED.values.customFields
     this.Gpio = onoff.Gpio
-    this.led = new this.Gpio(GPIO_NUMBER, 'out')
+    this.led = new this.Gpio(gpio, 'out')
   }
 
   on() {
@@ -14,6 +18,6 @@ export default class LED {
     })
     setTimeout(() => {
       this.led.writeSync(0)
-    }, DURATION)
+    }, 1500)
   }
 }
