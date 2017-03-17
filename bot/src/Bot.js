@@ -57,8 +57,8 @@ export default class Bot {
       const response = await deleteMessage({data: {username}})
       bot.reply(message, this.removeMessage)
     } catch (e) {
-      console.log(e)
-      console.log('handleClearMessage error')
+      bot.reply(message, 'Internal Bot Error - a trained AI has been sent to investigate')
+      console.log(e) // Keeping for error logging
     }
   }
 
@@ -70,7 +70,8 @@ export default class Bot {
       await publishMessage(messageConfig)
       return bot.reply(message, this.invitedMessage(messageConfig.messageText))
     } catch (e) {
-      
+      bot.reply(message, 'Internal Bot Error - a trained AI has been sent to investigate')
+      console.log(e) // Keeping for error logging
     }
   }
 

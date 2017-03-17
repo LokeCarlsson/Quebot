@@ -8,6 +8,5 @@ export const deleteMessage = payload => {
 }
 
 export const publishMessage = payload => {
-  console.log(payload)
-  // return axios.post('/actions/lcdState', payload)
+  return axios.post('/actions/lcdState', payload)
 }
