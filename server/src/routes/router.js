@@ -8,7 +8,7 @@ import User from '../model/User'
 import express from 'express'
 import LCD from '../libs/LCD'
 import LED from '../libs/LED'
-
+import resource from '../../resource'
 const app = express()
 
 // const config = {
@@ -26,44 +26,60 @@ const app = express()
 // const led = new LED()
 // const mq = new MessageQue(lcd, led)
 
-app.post('/message', messageValidation,  async (req, res) => {
+app.post('/message', messageValidation, (req, res) => {
   const {student} = req.body
-  try {
-    await createOrUpdateMessage(req.body)
-    mq.updateMessageQue()
-    // res.status(200).json({ msg: inviteMessage(student) })
-    res.status(200).json()
-  } catch (e) {
-    console.log(e)
-  }
+  createOrUpdateMessage(req.body)
+    .then(data => {
+      mq.updateMessageQue()
+      return res.status(200).send()
+    })
+    .catch(error => {
+      console.log(error)
+      console.log('app post /message')
+    })
+
+  // try {
+  //   await createOrUpdateMessage(req.body)
+  //   mq.updateMessageQue()
+  //   res.status(200).json()
+  // } catch (e) {
+  //   console.log(e)
+  // }
 })
 
-app.delete('/message', async (req, res) => {
+app.delete('/message', (req, res) => {
   const {username} = req.body
 
-  try {
-    const removedMessage = await User.findOneAndRemove({username})  
-    if (removedMessage) {
+  User.findOneAndRemove({username})
+    .then(removedMessage => {
+      if (!removedMessage) return res.status(400).send()
+      
       mq.updateMessageQue()
       return res.status(204).send()
-    }
-    return res.status(400).send()
-  } catch (e) {
-    console.log(e)
-  }
-})
+    })
+    .catch(error => {
+      console.log(error)
+      console.log('app delete /message')
+    })
 
-app.get('/actions', async (req, res) => {
-  return fsp.readJSON('server/resource.json')
-    .then(resource => res.status(200).send(resource))
-    .catch(error => console.log(error))
-})
 
+  // try {
+  //   const removedMessage = await User.findOneAndRemove({username})  
+  //   if (removedMessage) {
+  //     mq.updateMessageQue()
+  //     return res.status(204).send()
+  //   }
+
+  //   return res.status(400).send()
+  // } catch (e) {
+  //   console.log(e)
+  // }
+})
 
 app.get('/', (req, res) => {
   res.status(200).json({
-    actions: '/actions',
-    properties: '/properties',
+    actions: `${BASE_URL}/actions`,
+    properties: `${BASE_URL}/properties`,
     self: `${BASE_URL}`
   })
 })
