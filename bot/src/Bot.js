@@ -17,7 +17,7 @@ export default class Bot {
 
   init() {
     const controller = Botkit.slackbot({
-      debug: true,
+      debug: false,
       json_file_store: 'db'
     })
 

@@ -4,8 +4,8 @@
   "description": "This is for a rbpi project",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js --exec babel-node --presets es2015,stage-2",
-    "simple": "babel-node index.js --presets es2015,stage-2"
+    "start": "nodemon src/index.js --exec babel-node --presets es2015,stage-2",
+    "simple": "babel-node src/index.js --presets es2015,stage-2"
   },
   "keywords": [
     "nodejs",
