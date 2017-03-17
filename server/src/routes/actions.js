@@ -16,7 +16,7 @@ router.route('/actions')
     }]
   }, [])
 
-  res.send(response)
+  res.status(200).send(response)
 })
 
 router.route('/actions/lcdState')
@@ -28,8 +28,8 @@ router.route('/actions/lcdState')
       return res.status(204).send()
     })
     .catch(error => {
-      console.log(error)
-      console.log('app post /message')
+      res.status(500).send('Internal Server Error')
+      console.log(error) // Keeping for logs
     })
 
 })
@@ -44,8 +44,8 @@ router.route('/actions/lcdState')
       return res.status(204).send()
     })
     .catch(error => {
-      console.log(error)
-      console.log('app delete /message')
+      res.status(500).send('Internal Server Error')
+      console.log(error) // Keeping for logs
     })
 })
 

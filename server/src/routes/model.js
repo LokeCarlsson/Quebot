@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.route('/model')
 .get((req, res) => {
-  res.send(resource.links.actions)
+  res.status(200).send(resource.links.actions)
 })
 
 export default router

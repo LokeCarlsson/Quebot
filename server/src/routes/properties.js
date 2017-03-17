@@ -31,26 +31,11 @@ router.route('/properties/lcdState')
         }
       })
       
-      res.json(newArray)      
+      res.status(200).json(newArray)      
     })
     .catch(error => {
       console.log(error)
     })
-})
-
-router.route('/hej')
-.get((req, res) => {
-  createOrUpdateMessage({
-    username: 'Abc', 
-    name: 'easy as',
-    student: '123'
-  })
-  createOrUpdateMessage({
-    username: 'CBA', 
-    name: 'as easy',
-    student: '321'
-  })
-
 })
 
 export default router
