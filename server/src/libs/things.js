@@ -12,7 +12,7 @@ const {
   d7,
   cols,
   rows
-} = resource.links.properties.resources.LCD.values
+} = resource.links.properties.resources.LCD.values.customFields
 
 const config = {
   rs: register,
@@ -22,8 +22,10 @@ const config = {
   rows 
 }
 
-// const led = new LED()
-// const lcd = new LCD(config)
-// const mq = new MessageQue(lcd, led)
 
-// export default mq
+
+const led = new LED()
+const lcd = new LCD(config)
+const mq = new MessageQue(lcd, led)
+
+export default mq

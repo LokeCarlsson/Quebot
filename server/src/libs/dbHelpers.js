@@ -1,7 +1,7 @@
 import User from '../model/User'
 
 export const createOrUpdateMessage = async botPayload => {
-	const {username, name, student} = botPayload
+	const {username, name, messageText: student} = botPayload
   const firstRow = `${student} goto`
   const secondRow = name
 	try {
