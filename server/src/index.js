@@ -1,12 +1,13 @@
-import {TOKEN, PORT} from './settings'
+
 import bodyParser from 'body-parser'
 import routes from './routes/router'
 import mongoose from 'mongoose'
 import express from 'express'
-import Bot from './libs/Bot'
 import LED from './libs/LED'
 import morgan from 'morgan'
 import cors from 'cors'
+
+const PORT = process.env.PORT || 20080
 
 const app = express()
 
@@ -25,7 +26,6 @@ app.listen(PORT, error => {
   mongoose.connect('mongodb://localhost/botDB', (e) => {
     console.log('Connected to mongodb')
   })
-  
-  const bot = new Bot(TOKEN)
-  bot.init()
 })
+
+

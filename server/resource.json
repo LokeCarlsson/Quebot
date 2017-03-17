@@ -1,0 +1,86 @@
+{
+  "id": "https://dv-rpi4.lnu.se:20443",
+  "name": "LCD information queue API",
+  "description":"Raspberry REST api for LCD information queue",
+  "tags": [
+    "raspberry",
+    "pi",
+    "queue",
+    "lcd"
+  ],
+  "customFields": {
+    "hostname": "dv-rpi4.lnu.se",
+    "port": 20443,
+    "secure": true
+  },
+  "links": {
+    "product": {
+      "link": "https://www.raspberrypi.org/products/raspberry-pi-3-model-b/",
+      "title": "The raspberry running the API"
+    },
+    "properties": {
+      "link": "/properties",
+      "title": "Property List",
+      "resources": {
+        "LCD": {
+          "name": "LCD Display",
+          "description": "If it's not empty, the text should be displayed on the LCD",
+          "values": {
+            "type": "string",
+            "customFields": {
+              "enable": 19,
+              "register": 26,
+              "d4": 13,
+              "d5": 6,
+              "d6": 5,
+              "d7": 11
+            }
+          },
+          "tags": [
+            "lcd",
+            "private"
+          ]
+        },
+        "LED": {
+          "name": "LED",
+          "description": "When the information on the LCD changes, the LED lights up",
+          "values": {
+            "customFields": {
+              "gpio": 18
+            }
+          },
+          "tags": [
+            "LCD",
+            "private"
+          ]
+        }
+      }
+    },
+    "actions": {
+      "link": "/actions",
+      "title": "Different Actions",
+      " ": {
+        "lcdDisplay": {
+          "name": "Change LCD text",
+          "description": "Changes the text on the LCD",
+          "values": {
+            "type": "string",
+            "required": true
+          },
+          "state": {
+            "type": "string",
+            "required": true
+          }
+        }
+      }
+    },
+    "help": {
+      "link": "https://github.com/1dv527/project-group-C",
+      "title": "Documentation"
+    },
+    "ui": {
+      "link": "/",
+      "title": "Start Point"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+
+
+
+
+
+
+
+
+
+  1. Bryt ut botten. Done
+  2. Skapa en resource.json (Resource model) Done
+  3. Planera API'et
+    3.1 - Start Point.
+    3.2 - Auth - typ jwt så bangs inte kan förstöra sker.
+    3.3 - Lägga till en help
+    3.4 - Error handling with bot
+  
+  4. Göra en readme!

@@ -1,4 +1,4 @@
-import {GPIO_NUMBER, DURATION} from '../settings'
+// import {GPIO_NUMBER, DURATION} from '../settings'
 import onoff from 'onoff'
 
 export default class LED {
