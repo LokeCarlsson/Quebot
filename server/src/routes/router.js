@@ -1,8 +1,6 @@
-import { login, register } from '../libs/auth'
 import messageValidation from './middlewares/messageValidation'
 import MessageQue from '../libs/MessageQue'
 import { createOrUpdateMessage } from '../libs/dbHelpers'
-// import * as settings from '../settings'
 import fsp from 'fs-promise'
 import passport from 'passport'
 import { BASE_URL } from '../utils/constants'
