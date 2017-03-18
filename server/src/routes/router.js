@@ -1,8 +1,6 @@
 import messageValidation from './middlewares/messageValidation'
 import MessageQue from '../libs/MessageQue'
 import { createOrUpdateMessage } from '../libs/dbHelpers'
-import fsp from 'fs-promise'
-import passport from 'passport'
 import { BASE_URL } from '../utils/constants'
 import User from '../model/User'
 import express from 'express'
