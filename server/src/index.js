@@ -27,7 +27,7 @@ app.use((error, request, response, next) => {
   response.status(500).json({ msg: error.message })
 })
 
-app.listen(PORT, error => {
+app.listen(PORT, 'localhost', error => {
   console.log(`Server is running! - localhost:${PORT}`)
   mongoose.connect('mongodb://localhost/botDB', (e) => {
     console.log('Connected to mongodb')
