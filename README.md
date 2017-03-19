@@ -1,21 +1,21 @@
-# What is this thing?
+## What is this thing?
 This *thing* is used in order to get messages to a LCD screen, whereas when information has been written to the LCD - the information is stored in a virtual queue that eventually will display the message created. When the information on the LCD changes, an LED lights up for a short time in order to notify that there is information on the screen to read.
 
-# Security
+## Security
 The API has been built in such a way that it cannot be reached outside of the Raspberry PI, and only be reached from the localhost, which basically implies that one would have to have some sort of middle hand in order to interact with it. For example, as we have created, a bot. This setting can easily be changed to open up the API publically. 
 
 Since the API only can act over the localhost, we have chosen not to activate TLS since the traffic cannot be targeted by a man-in-the-middle attack. If one chooses to open up the API to the public instead, TLS must be enabled in order to protect against attacks due to not encrypting the traffic.
 
-### Tech
+## Tech
 This WoT makes use of the direct integration pattern since it is directly connected to the wifi. The resource.json design is founded on the principles mentioned in the book *Building the web of things*, regarding the information of properties, actions, but not things, since we do not have a thing that is connected to another thing acting as a proxy.
 
 According to the [Web Thing Model](https://www.w3.org/Submission/wot-model/) weâ€™ve implemented all the must have requirements and most of the should have requirements that was applicable or relevant to our application. For example it supports the appropriate status codes and also uses JSON as its primary format of representation.
 
-### How do I get the show on the road?
+## How do I get the show on the road?
 * Start with cloning the repo from github: 'git clone https://github.com/1dv527/project-group-C.git'
 * Continue with one of the steps below.
 
-### How do I get the WoT API show on the road?
+## How do I get the WoT API show on the road?
 * Go to the server folder and run 'npm run build'
 * Put the newly created dist folder on the RPi together with the package.json, and the resource.json.
 * On the RPi run 'npm install' in order to install all the required dependencies. 
@@ -23,7 +23,7 @@ According to the [Web Thing Model](https://www.w3.org/Submission/wot-model/) weâ
 * Start the server with your prefered production process manager, such as *PM2* in order to keep the API up and running.
 * The API should now be up and running.
 
-### How do I get the BOT show on the road? (optional)
+## How do I get the BOT show on the road? (optional)
 ![Quebot-avatar](http://i.imgur.com/Xe4Pc5P.png)
 * This specific bot is created for Slack, so in order to use it you will need a 'Slack Token'. Information regarding the creation of a slack bot can be found here: [Slack Bot Information](https://api.slack.com/bot-users)
 * Create a .env file and add the your slack token like this: SLACK_TOKEN=xxx-xx-xxxxxx-xxxx, in the root of the bot folder, where xxx is the slack token you just obtained.
@@ -32,7 +32,7 @@ According to the [Web Thing Model](https://www.w3.org/Submission/wot-model/) weâ
 * Start the bot with your prefered production process manager, such as *PM2* in order to keep the BOT up and running.
 * The BOT should now be up and running.
 
-### API Documentation
+## API Documentation
 
     GET - /
     Returns 200
@@ -44,10 +44,12 @@ According to the [Web Thing Model](https://www.w3.org/Submission/wot-model/) weâ
     POST - /actions/lcdState
     Returns 204
     Error 500
+    Adds a message to the message queue
 
     DELETE - /actions/lcdState
     Returns 204
     Error 500
+    Deletes a message from the message queue
 
     GET - /model
     Returns 200
