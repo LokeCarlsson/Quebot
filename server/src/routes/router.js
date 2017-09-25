@@ -7,14 +7,14 @@ import express from 'express'
 import LCD from '../libs/LCD'
 import LED from '../libs/LED'
 import resource from '../../resource'
-const app = express()
+const router = express()
 
-app.get('/', (req, res) => {
-  res.status(200).json({
+router.get('/', (req, res) => {
+  res.json({
     actions: `${BASE_URL}/actions`,
     properties: `${BASE_URL}/properties`,
-    self: `${BASE_URL}`
+    self: `${BASE_URL}`,
   })
 })
 
-export default app
+export default router
