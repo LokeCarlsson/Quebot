@@ -13,7 +13,7 @@ export default class LCD {
   }
 
   displayMessage(message) {
-    const {firstRow, secondRow} = message
+    const { firstRow, secondRow } = message
 
     this.lcd.cursor()
     this.lcd.clear()
@@ -24,10 +24,8 @@ export default class LCD {
     })
   }
 
-
-
   attachTurnOffProcedures() {
-    process.on('SIGINT', (e) => {
+    process.on('SIGINT', e => {
       if (e) {
         throw e
       }
@@ -37,5 +35,3 @@ export default class LCD {
     })
   }
 }
-
-

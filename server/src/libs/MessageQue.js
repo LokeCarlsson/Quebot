@@ -1,6 +1,6 @@
 import User from '../model/User'
 
-export default class MessageQue {  
+export default class MessageQue {
   constructor(lcd, led) {
     this.messageQueInterval = null
     this.messageQueIndex = 0
@@ -9,7 +9,6 @@ export default class MessageQue {
     this.led = led
     this.lcd.publish()
     this.messageList = []
-    
   }
 
   async updateMessageQue() {
@@ -24,20 +23,20 @@ export default class MessageQue {
         this.messageQueInterval = null
         this.lcd.lcd.clear()
       }
-
     } catch (error) {
       console.log(error)
     }
   }
 
   updateInterval() {
-    this.messageQueInterval === null ? 
-    this.startInterval() : this.restartInterval()
+    this.messageQueInterval === null
+      ? this.startInterval()
+      : this.restartInterval()
   }
 
   startInterval() {
     this.messageQueInterval = setInterval(() => {
-      const {message} = this.messageList[this.messageQueIndex]
+      const { message } = this.messageList[this.messageQueIndex]
       this.led.on()
       this.lcd.displayMessage(message)
       this.messageQueIndex = (this.messageQueIndex + 1) % this.messageQueLength
@@ -49,6 +48,4 @@ export default class MessageQue {
     this.messageQueInterval = null
     this.updateInterval()
   }
-
 }
-

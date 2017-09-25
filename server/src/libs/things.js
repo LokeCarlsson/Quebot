@@ -7,11 +7,11 @@ const {
   enable,
   register,
   d4,
-  d5, 
-  d6, 
+  d5,
+  d6,
   d7,
   cols,
-  rows
+  rows,
 } = resource.links.properties.resources.LCD.values.customFields
 
 const config = {
@@ -19,10 +19,8 @@ const config = {
   e: enable,
   data: [d4, d5, d6, d7],
   cols,
-  rows 
+  rows,
 }
-
-
 
 const led = new LED()
 const lcd = new LCD(config)

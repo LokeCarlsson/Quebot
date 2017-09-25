@@ -8,7 +8,7 @@ const router = express.Router()
 router
   .get('/actions', (req, res) => {
     const { resources } = resource.links.actions
-    
+
     const response = Object.keys(resources).reduce((array, action) => {
       const newAction = { id: action, name: resources[action].description }
       return [...array, newAction]
