@@ -12,7 +12,7 @@ This WoT makes use of the direct integration pattern since it is directly connec
 According to the [Web Thing Model](https://www.w3.org/Submission/wot-model/) we’ve implemented all the must have requirements and most of the should have requirements that was applicable or relevant to our application. For example it supports the appropriate status codes and also uses JSON as its primary format of representation.
 
 ## How do I get the show on the road?
-* Start with cloning the repo from github: 'git clone https://github.com/1dv527/project-group-C.git'
+* Start with cloning the repo from github: 'git clone https://github.com/LokeCarlsson/Quebot'
 * Continue with one of the steps below.
 
 ## How do I get the WoT API show on the road?
