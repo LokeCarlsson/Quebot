@@ -1,3 +1,15 @@
+<p align="center">
+  <img alt='magoon-face' src='https://user-images.githubusercontent.com/14088342/30803493-14302666-a1ea-11e7-9eb4-5200db146cbe.png' width='250'/>
+  <h1 align="center">Quebot</h1>
+  <p align="center">The best misspelled queuebot in the world.</p>
+  <p align="center">
+    <img alt='popping badge' src='https://img.shields.io/badge/mode-skynet-green.svg?style=flat-square' />
+    <img alt='build badge' src='https://img.shields.io/badge/build-passing-green.svg?style=flat-square' />
+    <img alt='version badge' src='https://img.shields.io/badge/version-1.0.0-blue.svg?style=flat-square' />
+  </p>
+</div>
+<hr>  
+
 ## What is this thing?
 This *thing* is used in order to get messages to a LCD screen, whereas when information has been written to the LCD - the information is stored in a virtual queue that eventually will display the message created. When the information on the LCD changes, an LED lights up for a short time in order to notify that there is information on the screen to read.
 
