@@ -18,7 +18,7 @@ router
         const prop = {
           id: resource,
           name: resource === 'LCD' ? resources[resource].name : undefined,
-          values: messages,
+          values: newMessage,
         }
         return [...array, prop]
       }, [])
